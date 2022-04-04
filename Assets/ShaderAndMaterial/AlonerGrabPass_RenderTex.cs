@@ -59,11 +59,21 @@ public class AlonerGrabPass_RenderTex : ScriptableRendererFeature
         public override void Execute(ScriptableRenderContext context, ref RenderingData renderingData)
         {
             CommandBuffer cmd = CommandBufferPool.Get(profilerTag);
-            cmd.Clear();
+            // cmd.Clear();
+
+            foreach (var camera in UnityEditor.SceneView.GetAllSceneCameras())
+            {
+                if (camera == renderingData.cameraData.camera) return;
+            }
+
+            if (renderingData.cameraData.camera.name.Contains("Preview")) return;
 
             // the actual content of our custom render pass!
             // we apply our material while blitting to a temporary texture
-            cmd.Blit(cameraColorTargetIdent, renderTex);
+            // cmd.Blit(cameraColorTargetIdent, renderTex);
+            cmd.Blit(renderingData.cameraData.renderer.cameraColorTarget, renderTex);
+            // cmd.SetRenderTarget(renderTex);
+            // cmd.ClearRenderTarget(true, true, Color.blue);
 
             // ...then blit it back again
             // cmd.Blit(tempTexture.Identifier(), cameraColorTargetIdent);
@@ -72,7 +82,7 @@ public class AlonerGrabPass_RenderTex : ScriptableRendererFeature
             context.ExecuteCommandBuffer(cmd);
 
             // tidy up after ourselves
-            cmd.Clear();
+            // cmd.Clear();
             CommandBufferPool.Release(cmd);
         }
 

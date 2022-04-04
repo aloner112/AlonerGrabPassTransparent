@@ -2,7 +2,7 @@ Shader "AlonerShader/SonicShader3"
 {
     Properties
     {
-        _MainTex ("Main Texture", 2D) = "white" {}
+        _BaseMap ("Main Texture", 2D) = "white" {}
         [HideInInspector]_GrabPassTransparent ("Grab Pass Transparent", 2D) = "white" {}
         _GrabPassTransparentRT ("Grab Pass Transparent RenderTexture", 2D) = "white" {}
         _DisStr ("Distortion Strength", Range(0, 1)) = 0.5
@@ -33,12 +33,13 @@ Shader "AlonerShader/SonicShader3"
             float4 _BaseColor;
         CBUFFER_END
 
-        TEXTURE2D(_MainTex);
-        SAMPLER(sampler_MainTex);
+        TEXTURE2D(_BaseMap);
+        SAMPLER(sampler_BaseMap);
         TEXTURE2D(_GrabPassTransparent);
         SAMPLER(sampler_GrabPassTransparent);
         TEXTURE2D(_GrabPassTransparentRT);
         SAMPLER(sampler_GrabPassTransparentRT);
+        // sampler2D _GrabPassTransparentRT;
         float _DisStr;
         float _WaveSpd;
         float _Freq;
@@ -122,9 +123,10 @@ Shader "AlonerShader/SonicShader3"
                 float2 fixedUV = screenPos + UVfixFactor;
 
                 float4 texColor;
-                // texColor = SAMPLE_TEXTURE2D(_GrabPassTransparentRT, _GrabPassTransparentRT, fixedUV);
+                texColor = SAMPLE_TEXTURE2D(_GrabPassTransparentRT, sampler_GrabPassTransparentRT, fixedUV);
                 // texColor = SAMPLE_TEXTURE2D(_GrabPassTransparent, sampler_GrabPassTransparent, fixedUV);
-                texColor = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, fixedUV);
+                // texColor = SAMPLE_TEXTURE2D(_BaseMap, sampler_BaseMap, fixedUV);
+                // texColor = tex2D(_GrabPassTransparentRT, i.uv);
                 return lerp((texColor * _BaseColor), _BlendColor, _BlendOpacity);
             }
 
