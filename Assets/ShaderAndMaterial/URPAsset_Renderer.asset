@@ -16,9 +16,9 @@ MonoBehaviour:
     debugReplacementPS: {fileID: 4800000, guid: cf852408f2e174538bcd9b7fda1c5ae7,
       type: 3}
   m_RendererFeatures:
-  - {fileID: 977279009511752206}
   - {fileID: 1623008864510019988}
-  m_RendererFeatureMap: 0ec264d014fe8f0d94096e94f6158616
+  - {fileID: 7678205791728084187}
+  m_RendererFeatureMap: 94096e94f6158616dba44c987c778e6a
   m_UseNativeRenderPass: 0
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   xrSystemData: {fileID: 11400000, guid: 60e1133243b97e347b653163a8c01b64, type: 2}
@@ -40,10 +40,10 @@ MonoBehaviour:
   m_AssetVersion: 1
   m_OpaqueLayerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 55
   m_TransparentLayerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 55
   m_DefaultStencilState:
     overrideStencilState: 0
     stencilReference: 0
@@ -51,31 +51,13 @@ MonoBehaviour:
     passOperation: 2
     failOperation: 0
     zFailOperation: 0
-  m_ShadowTransparentReceive: 1
+  m_ShadowTransparentReceive: 0
   m_RenderingMode: 0
   m_DepthPrimingMode: 0
   m_AccurateGbufferNormals: 0
   m_ClusteredRendering: 0
   m_TileSize: 32
   m_IntermediateTextureMode: 0
---- !u!114 &977279009511752206
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08ab9339594a76748a12371e6036d438, type: 3}
-  m_Name: AlonerGrabPassMainTex
-  m_EditorClassIdentifier: 
-  m_Active: 0
-  settings:
-    profilerTag: AlonerGrabPass_MainTex
-    IsEnabled: 1
-    WhenToInsert: 500
-    MaterialToBlit: {fileID: 2100000, guid: 2cd2c53b237f8c6459a8be793ef5e9c3, type: 2}
 --- !u!114 &1623008864510019988
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -88,9 +70,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a4e5be525af540429c466b9a6df6632, type: 3}
   m_Name: AlonerGrabPassRenderTex
   m_EditorClassIdentifier: 
-  m_Active: 1
+  m_Active: 0
   settings:
     profilerTag: AlonerGrabPass_RenderTex
     IsEnabled: 1
     WhenToInsert: 500
     tex: {fileID: 8400000, guid: d35657b62d2d82e4387b63694b625449, type: 2}
+--- !u!114 &7678205791728084187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f21f85c732670bc4b823e060781b4934, type: 3}
+  m_Name: AlonerGrabPassGlobalTexture
+  m_EditorClassIdentifier: 
+  m_Active: 1
+  settings:
+    profilerTag: AlonerGrabPass_GlobalTexture
+    IsEnabled: 1
+    WhenToInsert: 500
+    texName: _GrabPassTransparentRT
+    testColor: {r: 0.735849, g: 0.49479583, b: 0.19784619, a: 1}

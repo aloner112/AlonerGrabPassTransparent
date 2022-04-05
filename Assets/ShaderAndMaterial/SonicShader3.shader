@@ -3,7 +3,7 @@ Shader "AlonerShader/SonicShader3"
     Properties
     {
         _BaseMap ("Main Texture", 2D) = "white" {}
-        [HideInInspector]_GrabPassTransparent ("Grab Pass Transparent", 2D) = "white" {}
+        _GrabPassTransparent ("Grab Pass Transparent", 2D) = "white" {}
         _GrabPassTransparentRT ("Grab Pass Transparent RenderTexture", 2D) = "white" {}
         _DisStr ("Distortion Strength", Range(0, 1)) = 0.5
         _WaveSpd ("Wave Speed", Range(0, 2)) = 0.5
@@ -62,7 +62,6 @@ Shader "AlonerShader/SonicShader3"
         {
             float4 position : SV_POSITION;
             float2 uv : TEXCOORD0;
-            // float4 ScreenPosition;
         };
 
         ENDHLSL
